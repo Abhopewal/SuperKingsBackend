@@ -1,0 +1,10 @@
+
+let login = (req,res)=>{
+    try {
+        console.log(req.body,"body")
+    } catch (error) {
+        
+    }
+}
+
+module.exports = login;
