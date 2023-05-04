@@ -8,7 +8,7 @@ require("./db")();
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-app.use("/api/v1/",userRoute);
+app.use("/v1",userRoute);
 
 app.listen(port,()=>{
     console.log(`listing on port ${port}`)
