@@ -5,9 +5,10 @@ const bcrypt = require("bcrypt");
 
 let register = async (req, res) => {
     try {
+        console.log(req.body,"body")
         const validateRegister = joi.object({
 
-            ref: joi.string().min(3).max(20),
+            referralId: joi.string().min(3).max(20),
             name: joi.string().min(3).max(20).required(),
             password: joi.string().required(),
             phone: joi.string().min(10).max(13).required(),
@@ -28,9 +29,9 @@ let register = async (req, res) => {
 
         const passwordHash = await bcrypt.hash(req.body.password, 10);
 
-        const { ref, name, phone } = req.body;
+        const { referralId, name, phone } = req.body;
 
-        const createuser = new User({ ref, name, phone, password: passwordHash });
+        const createuser = new User({ referralId, name, phone, password: passwordHash });
 
         const result = await createuser.save();
 
@@ -38,6 +39,7 @@ let register = async (req, res) => {
 
         const token = Jwtservice.sign(user);
 
+        console.log(token,"token")
         return res.status(200).json({ status: true, message: "Register success", _id: result.id, name: result.name, role: result.role, phone: result.phone, token });
 
     } catch (error) {

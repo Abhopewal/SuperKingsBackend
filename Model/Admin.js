@@ -1,14 +1,7 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
-    referralId:{
-        type:String,
-    },
-    name:{
-        type:String,
-        required:true,
-    },
-    phone:{
+const AdminSchema = new mongoose.Schema({
+    email:{
         type:String,
         required:true,
         unique:true,
@@ -23,10 +16,10 @@ const UserSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        default:"user"
+        default:"admin"
     }
 },{timestamps:true});
 
-let User = new mongoose.model("User",UserSchema);
+let Admin = new mongoose.model("Admin",AdminSchema);
 
-module.exports = User;
+module.exports = Admin;
