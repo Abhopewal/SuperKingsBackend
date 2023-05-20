@@ -43,7 +43,7 @@ let register = async (req, res) => {
         return res.status(200).json({ status: true, message: "Register success", _id: result.id, name: result.name, role: result.role, phone: result.phone, token });
 
     } catch (error) {
-        return res.status(200).json({ status: false, error: error.message });
+        return res.status(500).json({ status: false, error: error.message });
     }
 }
 
