@@ -19,6 +19,8 @@ const adminAuth = (req, res, next) => {
             role
         }
 
+        if(role != "superadmin") return res.status(401).send({ error: "Your token is invalid please authenticate using a valid token !!" })
+
         req.admin = admin;
 
         next();
